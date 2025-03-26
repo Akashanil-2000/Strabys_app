@@ -1,0 +1,79 @@
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+_$TruckListModelImpl _$$TruckListModelImplFromJson(Map<String, dynamic> json) =>
+    _$TruckListModelImpl(
+      jsonrpc: json['jsonrpc'] as String?,
+      result: json['result'] == null
+          ? null
+          : Result.fromJson(json['result'] as Map<String, dynamic>),
+    );
+
+Map<String, dynamic> _$$TruckListModelImplToJson(
+        _$TruckListModelImpl instance) =>
+    <String, dynamic>{
+      'jsonrpc': instance.jsonrpc,
+      'result': instance.result,
+    };
+
+_$ResultImpl _$$ResultImplFromJson(Map<String, dynamic> json) => _$ResultImpl(
+      status: (json['status'] as num?)?.toInt(),
+      response: json['response'] as String?,
+      truck_type_list: (json['truck_type_list'] as List<dynamic>?)
+          ?.map((e) => TruckTypeList.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      container_list: (json['container_list'] as List<dynamic>?)
+          ?.map((e) => ContainerList.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      truck_capacity_list: (json['truck_capacity_list'] as List<dynamic>?)
+          ?.map((e) => TruckCapacityList.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+
+Map<String, dynamic> _$$ResultImplToJson(_$ResultImpl instance) =>
+    <String, dynamic>{
+      'status': instance.status,
+      'response': instance.response,
+      'truck_type_list': instance.truck_type_list,
+      'container_list': instance.container_list,
+      'truck_capacity_list': instance.truck_capacity_list,
+    };
+
+_$TruckTypeListImpl _$$TruckTypeListImplFromJson(Map<String, dynamic> json) =>
+    _$TruckTypeListImpl(
+      id: (json['id'] as num?)?.toInt(),
+      name: json['name'] as String?,
+    );
+
+Map<String, dynamic> _$$TruckTypeListImplToJson(_$TruckTypeListImpl instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'name': instance.name,
+    };
+
+_$ContainerListImpl _$$ContainerListImplFromJson(Map<String, dynamic> json) =>
+    _$ContainerListImpl(
+      id: (json['id'] as num?)?.toInt(),
+      name: json['name'] as String?,
+    );
+
+Map<String, dynamic> _$$ContainerListImplToJson(_$ContainerListImpl instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'name': instance.name,
+    };
+
+_$TruckCapacityListImpl _$$TruckCapacityListImplFromJson(
+        Map<String, dynamic> json) =>
+    _$TruckCapacityListImpl(
+      id: (json['id'] as num?)?.toInt(),
+      name: json['name'] as String?,
+    );
+
+Map<String, dynamic> _$$TruckCapacityListImplToJson(
+        _$TruckCapacityListImpl instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'name': instance.name,
+    };

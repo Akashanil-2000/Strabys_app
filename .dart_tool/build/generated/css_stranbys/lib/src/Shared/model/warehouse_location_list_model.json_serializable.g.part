@@ -1,0 +1,77 @@
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+_$WarehouseLocationListModelImpl _$$WarehouseLocationListModelImplFromJson(
+        Map<String, dynamic> json) =>
+    _$WarehouseLocationListModelImpl(
+      jsonrpc: json['jsonrpc'] as String?,
+      result: json['result'] == null
+          ? null
+          : Result.fromJson(json['result'] as Map<String, dynamic>),
+    );
+
+Map<String, dynamic> _$$WarehouseLocationListModelImplToJson(
+        _$WarehouseLocationListModelImpl instance) =>
+    <String, dynamic>{
+      'jsonrpc': instance.jsonrpc,
+      'result': instance.result,
+    };
+
+_$ResultImpl _$$ResultImplFromJson(Map<String, dynamic> json) => _$ResultImpl(
+      status: (json['status'] as num?)?.toInt(),
+      response: json['response'] as String?,
+      balance_qty: (json['balance_qty'] as num?)?.toDouble(),
+      location_list: (json['location_list'] as List<dynamic>?)
+          ?.map((e) => LocationList.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      product_qty_list: (json['product_qty_list'] as List<dynamic>?)
+          ?.map((e) => ProductQtyList.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+
+Map<String, dynamic> _$$ResultImplToJson(_$ResultImpl instance) =>
+    <String, dynamic>{
+      'status': instance.status,
+      'response': instance.response,
+      'balance_qty': instance.balance_qty,
+      'location_list': instance.location_list,
+      'product_qty_list': instance.product_qty_list,
+    };
+
+_$LocationListImpl _$$LocationListImplFromJson(Map<String, dynamic> json) =>
+    _$LocationListImpl(
+      location_id: (json['location_id'] as num?)?.toInt(),
+      location_name: json['location_name'] as String?,
+      location_barcode: json['location_barcode'] as String?,
+      lot_id: (json['lot_id'] as num?)?.toInt(),
+      lot_name: json['lot_name'] as String?,
+      warehouse_name: json['warehouse_name'] as String?,
+      available_qty: (json['available_qty'] as num?)?.toDouble(),
+    );
+
+Map<String, dynamic> _$$LocationListImplToJson(_$LocationListImpl instance) =>
+    <String, dynamic>{
+      'location_id': instance.location_id,
+      'location_name': instance.location_name,
+      'location_barcode': instance.location_barcode,
+      'lot_id': instance.lot_id,
+      'lot_name': instance.lot_name,
+      'warehouse_name': instance.warehouse_name,
+      'available_qty': instance.available_qty,
+    };
+
+_$ProductQtyListImpl _$$ProductQtyListImplFromJson(Map<String, dynamic> json) =>
+    _$ProductQtyListImpl(
+      lot_id: (json['lot_id'] as num?)?.toInt(),
+      lot_name: json['lot_name'] as String?,
+      quantity: (json['quantity'] as num?)?.toDouble(),
+    );
+
+Map<String, dynamic> _$$ProductQtyListImplToJson(
+        _$ProductQtyListImpl instance) =>
+    <String, dynamic>{
+      'lot_id': instance.lot_id,
+      'lot_name': instance.lot_name,
+      'quantity': instance.quantity,
+    };

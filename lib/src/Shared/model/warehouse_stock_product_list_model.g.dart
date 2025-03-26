@@ -1,0 +1,73 @@
+// GENERATED CODE - DO NOT MODIFY BY HAND
+
+part of 'warehouse_stock_product_list_model.dart';
+
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+_$WarehouseStockProductListModelImpl
+    _$$WarehouseStockProductListModelImplFromJson(Map<String, dynamic> json) =>
+        _$WarehouseStockProductListModelImpl(
+          jsonrpc: json['jsonrpc'] as String?,
+          result: json['result'] == null
+              ? null
+              : Result.fromJson(json['result'] as Map<String, dynamic>),
+        );
+
+Map<String, dynamic> _$$WarehouseStockProductListModelImplToJson(
+        _$WarehouseStockProductListModelImpl instance) =>
+    <String, dynamic>{
+      'jsonrpc': instance.jsonrpc,
+      'result': instance.result,
+    };
+
+_$ResultImpl _$$ResultImplFromJson(Map<String, dynamic> json) => _$ResultImpl(
+      status: (json['status'] as num?)?.toInt(),
+      response: json['response'] as String?,
+      product_list: (json['product_list'] as List<dynamic>?)
+          ?.map((e) =>
+              WarehouseStockProductList.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+
+Map<String, dynamic> _$$ResultImplToJson(_$ResultImpl instance) =>
+    <String, dynamic>{
+      'status': instance.status,
+      'response': instance.response,
+      'product_list': instance.product_list,
+    };
+
+_$WarehouseStockProductListImpl _$$WarehouseStockProductListImplFromJson(
+        Map<String, dynamic> json) =>
+    _$WarehouseStockProductListImpl(
+      product_id: (json['product_id'] as num?)?.toInt(),
+      name: json['name'] as String?,
+      product_qty: (json['product_qty'] as num?)?.toDouble(),
+      scanned_qty: (json['scanned_qty'] as num?)?.toDouble(),
+      balance: (json['balance'] as num?)?.toDouble(),
+      internal_ref: json['internal_ref'] as String?,
+      sku_number: json['sku_number'] as String?,
+      coa_id: (json['coa_id'] as num?)?.toInt(),
+      transfer_line_id: (json['transfer_line_id'] as num?)?.toInt(),
+      move_id: (json['move_id'] as num?)?.toInt(),
+      coa_name: json['coa_name'] as String?,
+      status: json['status'] as String?,
+    );
+
+Map<String, dynamic> _$$WarehouseStockProductListImplToJson(
+        _$WarehouseStockProductListImpl instance) =>
+    <String, dynamic>{
+      'product_id': instance.product_id,
+      'name': instance.name,
+      'product_qty': instance.product_qty,
+      'scanned_qty': instance.scanned_qty,
+      'balance': instance.balance,
+      'internal_ref': instance.internal_ref,
+      'sku_number': instance.sku_number,
+      'coa_id': instance.coa_id,
+      'transfer_line_id': instance.transfer_line_id,
+      'move_id': instance.move_id,
+      'coa_name': instance.coa_name,
+      'status': instance.status,
+    };

@@ -1,0 +1,2 @@
+C:/Users/Akash.A/new/css_stranbys/android/app/.cxx/Debug/5d6k73h1/armeabi-v7a/CMakeFiles/edit_cache.dir
+C:/Users/Akash.A/new/css_stranbys/android/app/.cxx/Debug/5d6k73h1/armeabi-v7a/CMakeFiles/rebuild_cache.dir

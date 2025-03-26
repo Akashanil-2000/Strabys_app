@@ -1,0 +1,56 @@
+// GENERATED CODE - DO NOT MODIFY BY HAND
+
+part of 'delivery_single_model.dart';
+
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+_$DeliverySingleModelImpl _$$DeliverySingleModelImplFromJson(
+        Map<String, dynamic> json) =>
+    _$DeliverySingleModelImpl(
+      jsonrpc: json['jsonrpc'] as String?,
+      result: json['result'] == null
+          ? null
+          : Result.fromJson(json['result'] as Map<String, dynamic>),
+    );
+
+Map<String, dynamic> _$$DeliverySingleModelImplToJson(
+        _$DeliverySingleModelImpl instance) =>
+    <String, dynamic>{
+      'jsonrpc': instance.jsonrpc,
+      'result': instance.result,
+    };
+
+_$ResultImpl _$$ResultImplFromJson(Map<String, dynamic> json) => _$ResultImpl(
+      status: (json['status'] as num?)?.toInt(),
+      delivery_order_data: (json['delivery_order_data'] as List<dynamic>?)
+          ?.map((e) => DeliveryOrderData.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+
+Map<String, dynamic> _$$ResultImplToJson(_$ResultImpl instance) =>
+    <String, dynamic>{
+      'status': instance.status,
+      'delivery_order_data': instance.delivery_order_data,
+    };
+
+_$DeliveryOrderDataImpl _$$DeliveryOrderDataImplFromJson(
+        Map<String, dynamic> json) =>
+    _$DeliveryOrderDataImpl(
+      picking_id: (json['picking_id'] as num?)?.toInt(),
+      picking_name: json['picking_name'] as String?,
+      grn_name: json['grn_name'] as String?,
+      delivery_name: json['delivery_name'] as String?,
+      status: json['status'] as String?,
+    );
+
+Map<String, dynamic> _$$DeliveryOrderDataImplToJson(
+        _$DeliveryOrderDataImpl instance) =>
+    <String, dynamic>{
+      'picking_id': instance.picking_id,
+      'picking_name': instance.picking_name,
+      'grn_name': instance.grn_name,
+      'delivery_name': instance.delivery_name,
+      'status': instance.status,
+    };

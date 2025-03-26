@@ -1,0 +1,56 @@
+// GENERATED CODE - DO NOT MODIFY BY HAND
+
+part of 'recieve_single_model.dart';
+
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+_$RecieveSingleModelImpl _$$RecieveSingleModelImplFromJson(
+        Map<String, dynamic> json) =>
+    _$RecieveSingleModelImpl(
+      jsonrpc: json['jsonrpc'] as String?,
+      result: json['result'] == null
+          ? null
+          : Result.fromJson(json['result'] as Map<String, dynamic>),
+    );
+
+Map<String, dynamic> _$$RecieveSingleModelImplToJson(
+        _$RecieveSingleModelImpl instance) =>
+    <String, dynamic>{
+      'jsonrpc': instance.jsonrpc,
+      'result': instance.result,
+    };
+
+_$ResultImpl _$$ResultImplFromJson(Map<String, dynamic> json) => _$ResultImpl(
+      status: (json['status'] as num?)?.toInt(),
+      packing_data: (json['packing_data'] as List<dynamic>?)
+          ?.map((e) => PackingData.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+
+Map<String, dynamic> _$$ResultImplToJson(_$ResultImpl instance) =>
+    <String, dynamic>{
+      'status': instance.status,
+      'packing_data': instance.packing_data,
+    };
+
+_$PackingDataImpl _$$PackingDataImplFromJson(Map<String, dynamic> json) =>
+    _$PackingDataImpl(
+      picking_id: (json['picking_id'] as num?)?.toInt(),
+      picking_name: json['picking_name'] as String?,
+      grn_name: json['grn_name'] as String?,
+      grn_id: (json['grn_id'] as num?)?.toInt(),
+      status: json['status'] as String?,
+      truck_show: json['truck_show'] as bool?,
+    );
+
+Map<String, dynamic> _$$PackingDataImplToJson(_$PackingDataImpl instance) =>
+    <String, dynamic>{
+      'picking_id': instance.picking_id,
+      'picking_name': instance.picking_name,
+      'grn_name': instance.grn_name,
+      'grn_id': instance.grn_id,
+      'status': instance.status,
+      'truck_show': instance.truck_show,
+    };

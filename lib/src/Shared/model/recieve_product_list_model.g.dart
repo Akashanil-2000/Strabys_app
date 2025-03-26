@@ -1,0 +1,68 @@
+// GENERATED CODE - DO NOT MODIFY BY HAND
+
+part of 'recieve_product_list_model.dart';
+
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+_$RecieveProductListModelImpl _$$RecieveProductListModelImplFromJson(
+        Map<String, dynamic> json) =>
+    _$RecieveProductListModelImpl(
+      jsonrpc: json['jsonrpc'] as String?,
+      result: json['result'] == null
+          ? null
+          : Result.fromJson(json['result'] as Map<String, dynamic>),
+    );
+
+Map<String, dynamic> _$$RecieveProductListModelImplToJson(
+        _$RecieveProductListModelImpl instance) =>
+    <String, dynamic>{
+      'jsonrpc': instance.jsonrpc,
+      'result': instance.result,
+    };
+
+_$ResultImpl _$$ResultImplFromJson(Map<String, dynamic> json) => _$ResultImpl(
+      status: (json['status'] as num?)?.toInt(),
+      packing_data: (json['packing_data'] as List<dynamic>?)
+          ?.map((e) => ProductList.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+
+Map<String, dynamic> _$$ResultImplToJson(_$ResultImpl instance) =>
+    <String, dynamic>{
+      'status': instance.status,
+      'packing_data': instance.packing_data,
+    };
+
+_$ProductListImpl _$$ProductListImplFromJson(Map<String, dynamic> json) =>
+    _$ProductListImpl(
+      product_id: (json['product_id'] as num?)?.toInt(),
+      name: json['name'] as String?,
+      sku: json['sku'] as String?,
+      internal_ref: json['internal_ref'] as String?,
+      order_qty: (json['order_qty'] as num?)?.toDouble(),
+      scanned_qty: (json['scanned_qty'] as num?)?.toDouble(),
+      balance_qty: (json['balance_qty'] as num?)?.toDouble(),
+      move_id: (json['move_id'] as num?)?.toInt(),
+      picking_id: (json['picking_id'] as num?)?.toInt(),
+      packing_list_line_id: (json['packing_list_line_id'] as num?)?.toInt(),
+      batch_code: json['batch_code'],
+      country_of_origin: json['country_of_origin'],
+    );
+
+Map<String, dynamic> _$$ProductListImplToJson(_$ProductListImpl instance) =>
+    <String, dynamic>{
+      'product_id': instance.product_id,
+      'name': instance.name,
+      'sku': instance.sku,
+      'internal_ref': instance.internal_ref,
+      'order_qty': instance.order_qty,
+      'scanned_qty': instance.scanned_qty,
+      'balance_qty': instance.balance_qty,
+      'move_id': instance.move_id,
+      'picking_id': instance.picking_id,
+      'packing_list_line_id': instance.packing_list_line_id,
+      'batch_code': instance.batch_code,
+      'country_of_origin': instance.country_of_origin,
+    };

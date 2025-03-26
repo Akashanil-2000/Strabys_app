@@ -1,0 +1,68 @@
+// GENERATED CODE - DO NOT MODIFY BY HAND
+
+part of 'delivery_model.dart';
+
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+_$DeliveryModelImpl _$$DeliveryModelImplFromJson(Map<String, dynamic> json) =>
+    _$DeliveryModelImpl(
+      jsonrpc: json['jsonrpc'] as String?,
+      result: json['result'] == null
+          ? null
+          : Result.fromJson(json['result'] as Map<String, dynamic>),
+    );
+
+Map<String, dynamic> _$$DeliveryModelImplToJson(_$DeliveryModelImpl instance) =>
+    <String, dynamic>{
+      'jsonrpc': instance.jsonrpc,
+      'result': instance.result,
+    };
+
+_$ResultImpl _$$ResultImplFromJson(Map<String, dynamic> json) => _$ResultImpl(
+      status: (json['status'] as num?)?.toInt(),
+      delivery_data: (json['delivery_data'] as List<dynamic>?)
+          ?.map((e) => DeliveryData.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+
+Map<String, dynamic> _$$ResultImplToJson(_$ResultImpl instance) =>
+    <String, dynamic>{
+      'status': instance.status,
+      'delivery_data': instance.delivery_data,
+    };
+
+_$DeliveryDataImpl _$$DeliveryDataImplFromJson(Map<String, dynamic> json) =>
+    _$DeliveryDataImpl(
+      id: (json['id'] as num?)?.toInt(),
+      name: json['name'] as String?,
+      customer_id: (json['customer_id'] as num?)?.toInt(),
+      customer_name: json['customer_name'] as String?,
+      consignee_name: json['consignee_name'] as String?,
+      warehouse: json['warehouse'] == null
+          ? null
+          : Warehouse.fromJson(json['warehouse'] as Map<String, dynamic>),
+    );
+
+Map<String, dynamic> _$$DeliveryDataImplToJson(_$DeliveryDataImpl instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'name': instance.name,
+      'customer_id': instance.customer_id,
+      'customer_name': instance.customer_name,
+      'consignee_name': instance.consignee_name,
+      'warehouse': instance.warehouse,
+    };
+
+_$WarehouseImpl _$$WarehouseImplFromJson(Map<String, dynamic> json) =>
+    _$WarehouseImpl(
+      id: (json['id'] as num?)?.toInt(),
+      name: json['name'] as String?,
+    );
+
+Map<String, dynamic> _$$WarehouseImplToJson(_$WarehouseImpl instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'name': instance.name,
+    };

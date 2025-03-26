@@ -1,0 +1,42 @@
+// GENERATED CODE - DO NOT MODIFY BY HAND
+
+part of 'warehouse_destination_location_model.dart';
+
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+_$WarehouseDestinationLocationModelImpl
+    _$$WarehouseDestinationLocationModelImplFromJson(
+            Map<String, dynamic> json) =>
+        _$WarehouseDestinationLocationModelImpl(
+          jsonrpc: json['jsonrpc'] as String?,
+          result: (json['result'] as List<dynamic>?)
+              ?.map((e) => WarehouseDestinationLocationItem.fromJson(
+                  e as Map<String, dynamic>))
+              .toList(),
+        );
+
+Map<String, dynamic> _$$WarehouseDestinationLocationModelImplToJson(
+        _$WarehouseDestinationLocationModelImpl instance) =>
+    <String, dynamic>{
+      'jsonrpc': instance.jsonrpc,
+      'result': instance.result,
+    };
+
+_$WarehouseDestinationLocationItemImpl
+    _$$WarehouseDestinationLocationItemImplFromJson(
+            Map<String, dynamic> json) =>
+        _$WarehouseDestinationLocationItemImpl(
+          name: json['name'] as String?,
+          barcode: json['barcode'] as String?,
+          id: (json['id'] as num?)?.toInt(),
+        );
+
+Map<String, dynamic> _$$WarehouseDestinationLocationItemImplToJson(
+        _$WarehouseDestinationLocationItemImpl instance) =>
+    <String, dynamic>{
+      'name': instance.name,
+      'barcode': instance.barcode,
+      'id': instance.id,
+    };

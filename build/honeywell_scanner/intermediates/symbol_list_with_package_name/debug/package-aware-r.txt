@@ -1,0 +1,1 @@
+com.plugin.flutter.honeywell_scanner

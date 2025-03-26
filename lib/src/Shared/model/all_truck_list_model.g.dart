@@ -1,0 +1,54 @@
+// GENERATED CODE - DO NOT MODIFY BY HAND
+
+part of 'all_truck_list_model.dart';
+
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+_$AllTruckListModelImpl _$$AllTruckListModelImplFromJson(
+        Map<String, dynamic> json) =>
+    _$AllTruckListModelImpl(
+      jsonrpc: json['jsonrpc'] as String?,
+      result: json['result'] == null
+          ? null
+          : Result.fromJson(json['result'] as Map<String, dynamic>),
+    );
+
+Map<String, dynamic> _$$AllTruckListModelImplToJson(
+        _$AllTruckListModelImpl instance) =>
+    <String, dynamic>{
+      'jsonrpc': instance.jsonrpc,
+      'result': instance.result,
+    };
+
+_$ResultImpl _$$ResultImplFromJson(Map<String, dynamic> json) => _$ResultImpl(
+      status: (json['status'] as num?)?.toInt(),
+      response: json['response'] as String?,
+      truck_ids_list: (json['truck_ids_list'] as List<dynamic>?)
+          ?.map((e) => TruckIdsList.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+
+Map<String, dynamic> _$$ResultImplToJson(_$ResultImpl instance) =>
+    <String, dynamic>{
+      'status': instance.status,
+      'response': instance.response,
+      'truck_ids_list': instance.truck_ids_list,
+    };
+
+_$TruckIdsListImpl _$$TruckIdsListImplFromJson(Map<String, dynamic> json) =>
+    _$TruckIdsListImpl(
+      id: (json['id'] as num?)?.toInt(),
+      truck_name: json['truck_name'] as String?,
+      truck_type_name: json['truck_type_name'] as String?,
+      gate_in_date: json['gate_in_date'] as String?,
+    );
+
+Map<String, dynamic> _$$TruckIdsListImplToJson(_$TruckIdsListImpl instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'truck_name': instance.truck_name,
+      'truck_type_name': instance.truck_type_name,
+      'gate_in_date': instance.gate_in_date,
+    };
