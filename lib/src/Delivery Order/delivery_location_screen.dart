@@ -88,6 +88,21 @@ class DeliveryLocationScreen extends GetView<DeliveryOrderController> {
                               // controller.appCtrl.buildKeyValueAlign(key: 'ID', value: '${controller.deliveryLocationList.value[index].location_id.toString() ?? ''}'),
                               controller.appCtrl.buildKeyValueAlign(key: 'Name', width: 85, color: Colors.red.shade700, value: controller.deliveryLocationList.value[index].location_name ?? ''),
                               controller.appCtrl.buildKeyValueAlign(key: 'Barcode', width: 85, color: Colors.grey.shade700, value: controller.deliveryLocationList.value[index].Location_barcode ?? ''),
+
+
+                              Obx(() => controller.appCtrl.buildKeyValueAlign(
+                                key: 'SKU',
+                                width: 85,
+                                color: Colors.grey.shade700,
+                                value: controller.locationSKUs[controller.deliveryLocationList.value[index].Location_barcode ?? ''] ?? 'Loading...',
+                              )),
+                              Obx(() => controller.appCtrl.buildKeyValueAlign(
+                                key: 'Internal Ref',
+                                width: 85,
+                                color: Colors.grey.shade700,
+                                value: controller.locationInternalRefs[controller.deliveryLocationList.value[index].Location_barcode ?? ''] ?? 'Loading...',
+                              )),
+
                               controller.appCtrl
                                   .buildKeyValueAlign(key: 'Tot Volume', width: 85, color: Colors.grey.shade700, value: '${controller.deliveryLocationList.value[index].total_volume ?? ''}'),
                               controller.appCtrl

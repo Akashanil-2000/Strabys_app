@@ -59,6 +59,7 @@ class InternalTransferLocationScreen extends GetView<InternalTransferController>
                     controller.selectedLocationName(item.name ?? '');
                     controller.selectedLocationId(item.id ?? 0);
                     await controller.getCustomerList();
+
                     Get.to(() => const CustomerListInternalTransferScreen());
                   },
                   child: SizedBox(

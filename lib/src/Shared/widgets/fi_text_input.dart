@@ -99,6 +99,7 @@ class FITextInput extends StatelessWidget {
       floatingLabelBehavior: FloatingLabelBehavior.always,
     );
     _inputDecorationWithOutIcon = InputDecoration(
+      labelText: labelText,
       focusColor: Colors.red,
       suffixIconConstraints: isRequired == true ? BoxConstraints(minHeight: 40, minWidth: 15) : BoxConstraints(minHeight: 1, minWidth: 1),
       suffixIcon: isRequired == true ? Icon(Icons.star, color: Colors.red.shade600, size: 8).marginSymmetric(horizontal: 10) : SizedBox.shrink(),

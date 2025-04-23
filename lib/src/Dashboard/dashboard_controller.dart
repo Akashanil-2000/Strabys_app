@@ -93,4 +93,5 @@ class DashboardController extends GetxController {
       isLoading(false);
     }
   }
+  initialize() {}
 }

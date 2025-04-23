@@ -1,0 +1,50 @@
+// GENERATED CODE - DO NOT MODIFY BY HAND
+
+part of 'contract_list_model.dart';
+
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+_$ContractListModelImpl _$$ContractListModelImplFromJson(
+        Map<String, dynamic> json) =>
+    _$ContractListModelImpl(
+      jsonrpc: json['jsonrpc'] as String,
+      result: ContractResult.fromJson(json['result'] as Map<String, dynamic>),
+    );
+
+Map<String, dynamic> _$$ContractListModelImplToJson(
+        _$ContractListModelImpl instance) =>
+    <String, dynamic>{
+      'jsonrpc': instance.jsonrpc,
+      'result': instance.result,
+    };
+
+_$ContractResultImpl _$$ContractResultImplFromJson(Map<String, dynamic> json) =>
+    _$ContractResultImpl(
+      status: (json['status'] as num).toInt(),
+      response: json['response'] as String,
+      contract_data: (json['contract_data'] as List<dynamic>)
+          .map((e) => ContractItem.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+
+Map<String, dynamic> _$$ContractResultImplToJson(
+        _$ContractResultImpl instance) =>
+    <String, dynamic>{
+      'status': instance.status,
+      'response': instance.response,
+      'contract_data': instance.contract_data,
+    };
+
+_$ContractItemImpl _$$ContractItemImplFromJson(Map<String, dynamic> json) =>
+    _$ContractItemImpl(
+      id: (json['id'] as num).toInt(),
+      name: json['name'] as String,
+    );
+
+Map<String, dynamic> _$$ContractItemImplToJson(_$ContractItemImpl instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'name': instance.name,
+    };

@@ -14,7 +14,7 @@ import '../../../Delivery Order/delivery_order_screen.dart';
 import '../theme/theme_constant.dart';
 
 class FormHelper extends GetView<DashboardController> {
-  const FormHelper({Key? key}) : super(key: key);
+  const FormHelper({Key? key, required String orderId}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -89,8 +89,7 @@ class FormHelper extends GetView<DashboardController> {
             // Form fields
             FITextInput(
               labelText: 'Truck No.',
-              labelTextStyle: TextStyle(color: Colors.black, fontSize: 14),
-              hintText: 'Enter truck number',
+              labelTextStyle: FITextStyle.xxxxs.copyWith(fontSize: 10, fontWeight: FontWeight.w500, color: Colors.grey),
               isRequired: true,
               controller: truckNo,
               validationMessage: 'Required Truck Number',
@@ -100,7 +99,7 @@ class FormHelper extends GetView<DashboardController> {
             FITextInput(
               labelText: 'Truck No.',
               labelTextStyle: TextStyle(color: Colors.black, fontSize: 14), // Adjust label style,
-              hintText: 'Enter truck number',
+
               isRequired: true,
               controller: truckNo,
               validationMessage: 'Required Truck Number',
@@ -209,7 +208,7 @@ class FormHelper extends GetView<DashboardController> {
                     children: [
                       FITextInput(
                         labelText: 'Container No.',
-                        hintText: 'Enter container number',
+
                         labelTextStyle: FITextStyle.xxxxs.copyWith(fontSize: 10, fontWeight: FontWeight.w500, color: Colors.grey),
                         controller: containerNo,
                       ),
@@ -251,13 +250,13 @@ class FormHelper extends GetView<DashboardController> {
                           .paddingOnly(bottom: 15),
                       FITextInput(
                         labelText: 'Seal No.',
-                        hintText: 'Enter truck number',
+
                         labelTextStyle: FITextStyle.xxxxs.copyWith(fontSize: 10, fontWeight: FontWeight.w500, color: Colors.grey),
                         controller: sealNo,
                       ),
                       FITextInput(
                         labelText: 'Driver Name',
-                        hintText: 'Enter truck number',
+
                         labelTextStyle: FITextStyle.xxxxs.copyWith(fontSize: 10, fontWeight: FontWeight.w500, color: Colors.grey),
                         isRequired: true,
                         controller: driverName,
@@ -266,7 +265,7 @@ class FormHelper extends GetView<DashboardController> {
                       ),
                       FITextInput(
                         labelText: 'Mobile No.',
-                        hintText: 'Enter truck number',
+
                         labelTextStyle: FITextStyle.xxxxs.copyWith(fontSize: 10, fontWeight: FontWeight.w500, color: Colors.grey),
                         isRequired: true,
                         controller: driverNo,
@@ -276,7 +275,7 @@ class FormHelper extends GetView<DashboardController> {
                       ),
                       FITextInput(
                         labelText: 'Total Quantity',
-                        hintText: 'Enter truck number',
+
                         labelTextStyle: FITextStyle.xxxxs.copyWith(fontSize: 10, fontWeight: FontWeight.w500, color: Colors.grey),
                         controller: totalQty,
                         textInputType: TextInputType.number,

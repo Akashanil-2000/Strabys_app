@@ -28,6 +28,7 @@ class InternalTransferScreen extends GetView<InternalTransferController> {
             Bounceable(
                 onTap: () {
                   controller.selectedWarehouseName(item.name ?? '');
+                  print(item.name.toString());
                   controller.selectedWarehouseId(item.id ?? 0);
                   Get.to(() => const InternalTransferLocationScreen());
                 },

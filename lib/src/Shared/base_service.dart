@@ -33,6 +33,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:css_stranbys/src/Shared/util/helper/common_helper.dart';
 
 import 'app_page.dart';
+import 'model/order_pending_model.dart';
 
 class BaseService extends GetConnect {
   final dio = network.Dio();
@@ -257,15 +258,29 @@ class CommonAPIService extends BaseService {
     }
   }
 
-  getPendingOrderList({orderId}) async {
-    var param = {'order_id': orderId};
-    print('DEBUG: OrderId is $orderId');
+  // In CommonAPIService
+  Future<List<PendingItem>> getPendingOrderList({required String orderId}) async {
+    try {
+      final response = await postRequest(
+        endPoint: '/order/pending/qty',
+        parameters: {'order_id': orderId},
+      );
 
-    var response = await postRequest(endPoint: 'https://css.odoouae.org/web/order/pending/qty', parameters: param);
-    if (response != null) {
-      return response;
-    } else {
-      return null;
+      debugPrint('API Response: ${jsonEncode(response)}'); // Add this line
+
+      if (response == null || response['result'] == null) {
+        throw Exception('Invalid response from server');
+      }
+
+      final items = (response['result']['pending_skus'] as List)
+          .map((e) => PendingItem.fromJson(e))
+          .toList();
+
+      debugPrint('Parsed ${items.length} pending items'); // Add this line
+      return items;
+    } catch (e) {
+      debugPrint('Error in getPendingOrderList: $e');
+      rethrow;
     }
   }
 
@@ -521,8 +536,9 @@ class CommonAPIService extends BaseService {
 
   getWarehouseProductList({locationId, customerId}) async {
     var param = {'location_id': locationId, 'customer_id': customerId};
-
+    print('Debug: customer_id = $customerId');
     var response = await postRequest(endPoint: 'https://css.odoouae.org/web/stock/warehouse/location/product/list', parameters: param);
+
     if (response != null) {
       return WarehouseProductListModel.fromJson(response);
     } else {
@@ -534,6 +550,17 @@ class CommonAPIService extends BaseService {
     var param = {'location_id': locationId};
 
     var response = await postRequest(endPoint: 'https://css.odoouae.org/web/stock/warehouse/location/customer/list', parameters: param);
+    if (response != null) {
+      return CustomerListModel.fromJson(response);
+    } else {
+      return null;
+    }
+  }
+
+  getWarehouseContractList({locationId}) async {
+    var param = {'location_id': locationId};
+
+    var response = await postRequest(endPoint: 'https://css.odoouae.org/web/stock/warehouse/location/contract/list', parameters: param);
     if (response != null) {
       return CustomerListModel.fromJson(response);
     } else {

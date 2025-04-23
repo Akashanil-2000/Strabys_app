@@ -55,16 +55,16 @@ class DeliveryOrderScreen extends GetView<DeliveryOrderController> {
                                 controller.appCtrl.buildKeyValueAlign(key: 'Warehouse', color: Colors.grey.shade700, value: item.warehouse?.name ?? ''),
                               ]).paddingAll(5).paddingSymmetric(vertical: 10),
                         ),
-                        IconButton(
-                          icon: const Icon(Icons.local_shipping_rounded, size: 30, color: Colors.blue),
-                          onPressed: () {
-                            Get.bottomSheet(
-                              FormHelper(), // Call your truck form bottom sheet here
-                              isScrollControlled: true,  // Ensure full screen modal behavior
-                              backgroundColor: Colors.white,
-                            );
-                          },
-                        ),
+                        // IconButton(
+                        //   icon: const Icon(Icons.local_shipping_rounded, size: 30, color: Colors.blue),
+                        //   onPressed: () {
+                        //     Get.bottomSheet(
+                        //       FormHelper(orderId:item.id.toString(),), // Call your truck form bottom sheet here
+                        //       isScrollControlled: true,  // Ensure full screen modal behavior
+                        //       backgroundColor: Colors.white,
+                        //     );
+                        //   },
+                        // ),
                       ],
                     ),
                   )).paddingSymmetric(vertical: 5),
@@ -93,17 +93,17 @@ class DeliveryOrderScreen extends GetView<DeliveryOrderController> {
                                 controller.appCtrl.buildKeyValueAlign(key: 'Warehouse', color: Colors.grey.shade700, value: item.warehouse?.name ?? ''),
                               ]).paddingAll(5).paddingSymmetric(vertical: 10),
                         ),
-                        IconButton(
-
-                          icon: const Icon(Icons.local_shipping_rounded, size: 30),
-                          onPressed: () {
-                            Get.bottomSheet(
-                              FormHelper(), // Call your truck form bottom sheet here
-                              isScrollControlled: true,  // Ensure full screen modal behavior
-                              backgroundColor: Colors.white,
-                            );
-                          },
-                        ),
+                        // IconButton(
+                        //
+                        //   icon: const Icon(Icons.local_shipping_rounded, size: 30),
+                        //   onPressed: () {
+                        //     Get.bottomSheet(
+                        //       FormHelper(orderId: item.id.toString()), // Call your truck form bottom sheet here
+                        //       isScrollControlled: true,  // Ensure full screen modal behavior
+                        //       backgroundColor: Colors.white,
+                        //     );
+                        //   },
+                        // ),
                       ],
                     ),
                   )).paddingSymmetric(vertical: 5),

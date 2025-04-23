@@ -159,6 +159,7 @@ class InternalTransferController extends GetxController {
       isLoading(true);
       customerList([]);
       CustomerListModel? response = await apiService.getWarehouseCustomerList(locationId: selectedLocationId.value);
+
       if (response != null && response.result != null && response.result!.isNotEmpty) {
         customerList.addAll(response.result ?? []);
       } else {

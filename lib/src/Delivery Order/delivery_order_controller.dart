@@ -1,4 +1,5 @@
 import 'package:css_stranbys/src/Delivery%20Order/delivery_location_screen.dart';
+import 'package:css_stranbys/src/Delivery%20Order/pending_order_screen.dart';
 import 'package:css_stranbys/src/Delivery%20Order/product_list_delivery_screen.dart';
 import 'package:css_stranbys/src/Delivery%20Order/single_delivery_screen.dart';
 import 'package:css_stranbys/src/Shared/app_settings_controller.dart';
@@ -17,6 +18,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 
+import '../Shared/model/order_pending_model.dart';
+
 class DeliveryOrderController extends GetxController {
   var isLoading = false.obs;
   var appCtrl = Get.find<AppSettingsController>();
@@ -26,9 +29,15 @@ class DeliveryOrderController extends GetxController {
   var singleDeliveryData = [].obs;
   var GRNNo = ''.obs;
   var orderId = ''.obs;
+  final pendingItems = <PendingItem>[].obs;
+  var isLoadingPending = false.obs;
+  var currentOrderId = ''.obs; // You already have thi
+  final errorMessage = RxString('');
+  RxMap<String, String> locationSKUs = <String, String>{}.obs;
+  RxMap<String, String> locationInternalRefs = <String, String>{}.obs;
 
   var isSearching = false.obs;
-  // var isSearchLoading = false.obs;
+  var isSearchLoading = false.obs;
   var FirstSearchkey = TextEditingController();
   var locationProductSearchkey = TextEditingController();
 
@@ -56,8 +65,6 @@ class DeliveryOrderController extends GetxController {
       isLoading(false);
     }
   }
-
-
 
   locationProductSearch(value) {
     if (value != null && value != '') {
@@ -119,6 +126,7 @@ class DeliveryOrderController extends GetxController {
     });
   }
 
+
   resetSearch() {
     FirstSearchkey.text = '';
     locationProductSearchkey.text = '';
@@ -147,6 +155,70 @@ class DeliveryOrderController extends GetxController {
     }
   }
 
+  @override
+  bool get permanent => true;
+
+
+  Future<void> fetchPendingItems(String orderId) async {
+    try {
+      isLoadingPending(true);
+      errorMessage('');
+
+
+      debugPrint('Fetching items for order: $orderId');
+
+
+      final items = await apiService.getPendingOrderList(orderId: orderId);
+      debugPrint('Received ${items.length} items');
+      debugPrint('🟢 Received ${items} items');
+
+      pendingItems.assignAll(items);
+      debugPrint('🟢 Updated pendingItems: ${pendingItems.length}');
+
+    } catch (e) {
+      debugPrint('🔴 Error: $e');
+      errorMessage(e.toString());
+    } finally {
+      isLoadingPending(false);
+    }
+  }
+
+  Future<void> loadPendingItems(String orderId, {bool forceRefresh = false}) async {
+    try {
+      if (pendingItems.isEmpty || forceRefresh) {
+        isLoadingPending(true);
+        final items = await apiService.getPendingOrderList(orderId: orderId);
+        pendingItems.assignAll(items);
+      }
+    } catch (e) {
+      errorMessage(e.toString());
+    } finally {
+      isLoadingPending(false);
+    }
+  }
+
+
+  Future<void> fetchProductDetailsForLocation( locationBarcode,  orderId) async {
+    try {
+      DeliveryProductListModel? response = await apiService.getDeliveryProductList(
+        order_id: orderId,
+        locationBarcode: locationBarcode,
+      );
+
+      if (response != null && response.result?.product_details != null) {
+        final products = response.result!.product_details!;
+        if (products.isNotEmpty) {
+          // Use the first product's SKU/Internal Ref (or concatenate all)
+          locationSKUs[locationBarcode] = products.first.sku ?? 'N/A';
+          locationInternalRefs[locationBarcode] = products.first.internal_ref ?? 'N/A';
+        }
+      }
+    } catch (e) {
+      debugPrint('Error fetching product details: $e');
+    }
+  }
+
+
   getSingleRecord({id}) async {
     try {
       isLoading(true);
@@ -165,10 +237,15 @@ class DeliveryOrderController extends GetxController {
       deliveryLocationList([]);
       DeliveryLocationModel? response =
           await apiService.getDeliveryListSingle(orderId: id);
+
       if (response != null &&
           response.result?.location_details != null &&
           response.result!.location_details!.isNotEmpty) {
         deliveryLocationList.addAll(response.result!.location_details!);
+        for (var location in deliveryLocationList) {
+          await fetchProductDetailsForLocation(location.Location_barcode ?? '', id);
+        }
+
         // locationPickingId('$pickingId');
         Get.to(() => DeliveryLocationScreen());
       }
@@ -259,6 +336,7 @@ class DeliveryOrderController extends GetxController {
       required truckTypeId,
       required truckCapacityId,
       required containerTypeId}) async {
+    debugPrint('Truck details collected (not saved to API)');
     try {
       isLoading(true);
 
@@ -271,8 +349,10 @@ class DeliveryOrderController extends GetxController {
           truckTypeId: truckTypeId,
           truckCapacityId: truckCapacityId,
           containerTypeId: containerTypeId);
+      print(response.toString());
       if (response != null && response['result']['status'] == 200) {
-        Get.close(1);
+        await fetchPendingItems(currentOrderId.value);
+        Get.off(() => PendingOrderScreen(orderId: currentOrderId.value));
         showSnackBar(message: '${response['result']['message']}');
       } else {
         showSnackBar(message: '${response['result']['message']}');
@@ -337,7 +417,7 @@ class DeliveryOrderController extends GetxController {
                       const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(5)),
-                  title: Text('Enter Quantity', style: FITextStyle.sMBold),
+                  title: Text('Enter Quantity (Max: $balanceQty)', style: FITextStyle.sMBold),
                   content: Form(
                     key: _formKey,
                     child: TextFormField(
@@ -403,22 +483,27 @@ class DeliveryOrderController extends GetxController {
                                     shape: RoundedRectangleBorder(
                                         borderRadius:
                                             BorderRadius.circular(5))),
-                                onPressed: () async {
-                                  if (_formKey.currentState?.validate() ==
-                                      true) {
-                                    if (locationQuantity.text != '' &&
-                                        !locationQuantity.text
-                                            .startsWith('0')) {
-                                      submitScannedLocation(
-                                          delivery_location_id:
-                                              delivery_location_id,
-                                          qty: locationQuantity.text);
-                                      Get.back();
-                                      appCtrl.resetScanData();
-                                      locationQuantity.text = '';
-                                    }
-                                  }
-                                },
+                            onPressed: () async {
+                              // Force validation update first
+                              _formKey.currentState?.validate();
+
+                              // Wait one frame to ensure validation completes
+                              await Future.delayed(Duration.zero);
+
+                              // Re-check validation state
+                              if (_formKey.currentState?.validate() ?? false) {
+                                final enteredQty = int.tryParse(locationQuantity.text) ?? 0;
+                                if (enteredQty <= balanceQty) {  // Additional safeguard
+                                  submitScannedLocation(
+                                    delivery_location_id: delivery_location_id,
+                                    qty: enteredQty.toString(),
+                                  );
+                                  Navigator.pop(context);
+                                  appCtrl.resetScanData();
+                                  locationQuantity.clear();
+                                }
+                              }
+                            },
                                 child: Text('Submit',
                                     style: TextStyle(
                                         color: Colors.grey.shade700,
@@ -508,4 +593,5 @@ class DeliveryOrderController extends GetxController {
           );
         });
   }
+
 }
